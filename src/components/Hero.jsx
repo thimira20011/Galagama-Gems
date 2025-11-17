@@ -1,6 +1,7 @@
 // --- src/components/Hero.jsx ---
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero-background.jpg'; // Imports the Figma hero image
 
 const Hero = () => {
@@ -19,7 +20,7 @@ const Hero = () => {
             Create, customize, and trade stunning jewelry with confidence and craftsmanship.
           </p>
           <div className="hero-buttons fade-in">
-            <a href="#custom" className="btn btn-primary">Start Designing</a>
+            <Link to="/design" className="btn btn-primary">Start Designing</Link>
             <a href="#marketplace" className="btn btn-secondary">Explore Marketplace</a>
           </div>
         </div>

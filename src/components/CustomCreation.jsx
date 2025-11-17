@@ -1,6 +1,7 @@
 // --- src/components/CustomCreation.jsx ---
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CustomCreation = () => {
   return (
@@ -30,7 +31,7 @@ const CustomCreation = () => {
           <div className="custom-creation-offer">
             <h3>🎁 20% OFF</h3>
             <p>for the first 100 customers!</p>
-            <a href="#custom" className="btn">Try 3D Design Studio</a>
+            <Link to="/design" className="btn">Try 3D Design Studio</Link>
           </div>
         </div>
       </div>
