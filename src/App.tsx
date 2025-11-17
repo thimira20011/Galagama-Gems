@@ -3,10 +3,11 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './components/Navigation';
 import { HeroContent } from './components/HeroContent';
 import { Login } from './components/Login';
+import { Signup } from './components/Signup';
 import { CustomDesign } from './components/CustomDesign';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'custom-design'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design'>('home');
   const [isLoaded, setIsLoaded] = useState(false);
   const { scrollY } = useScroll();
   
@@ -23,6 +24,8 @@ export default function App() {
       const hash = window.location.hash.slice(1);
       if (hash === 'login') {
         setCurrentPage('login');
+      } else if (hash === 'signup') {
+        setCurrentPage('signup');
       } else if (hash === 'custom-design') {
         setCurrentPage('custom-design');
       } else {
@@ -37,6 +40,10 @@ export default function App() {
 
   if (currentPage === 'login') {
     return <Login />;
+  }
+
+  if (currentPage === 'signup') {
+    return <Signup />;
   }
 
   if (currentPage === 'custom-design') {
