@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { Navigation } from './Navigation';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
+import { useCart } from '../context/CartContext';
 
 export function CustomDesign() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedMetal, setSelectedMetal] = useState('');
   const [selectedGemType, setSelectedGemType] = useState('');
@@ -2072,6 +2074,31 @@ export function CustomDesign() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                     disabled={!selectedCategory || !selectedMetal || !selectedSize}
+                    onClick={() => {
+                      if (selectedCategory && selectedMetal && selectedSize) {
+                        const metal = metals.find(m => m.value === selectedMetal);
+                        const gem = selectedGemType && selectedGemType !== 'none' 
+                          ? gemstones[selectedGemType as keyof typeof gemstones]?.find(g => g.value === selectedGemstone)
+                          : undefined;
+                        
+                        addToCart({
+                          id: `custom-${Date.now()}`,
+                          category: selectedCategory,
+                          metal: metal?.label || selectedMetal,
+                          metalPrice: metal?.price || 0,
+                          gemType: selectedGemType,
+                          gemstone: gem?.label,
+                          gemstonePrice: gem?.price,
+                          engravingText: engravingText || undefined,
+                          size: selectedSize,
+                          designMode: designMode || undefined,
+                          estimatedPrice: estimatedPrice
+                        });
+                        
+                        alert('Custom design added to cart!');
+                        window.location.hash = 'cart';
+                      }
+                    }}
                     style={{
                       padding: '16px 48px',
                       background: (!selectedCategory || !selectedMetal || !selectedSize)

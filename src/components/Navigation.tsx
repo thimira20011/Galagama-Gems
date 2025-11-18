@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion';
 import { NavLink } from './NavLink';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
+import { useCart } from '../context/CartContext';
 
 interface NavigationProps {
   isLoaded: boolean;
 }
 
 export function Navigation({ isLoaded }: NavigationProps) {
+  const { getTotalItems } = useCart();
+  const cartItemCount = getTotalItems();
+  
   const navLinks = [
     { label: 'Home', href: '#' },
     { label: 'Custom Design', href: '#custom-design' },
@@ -43,8 +47,38 @@ export function Navigation({ isLoaded }: NavigationProps) {
           ))}
         </div>
 
-        {/* Login/Sign Up */}
+        {/* Login/Sign Up & Cart */}
         <div className="hidden md:flex items-center space-x-4">
+          <a 
+            href="#cart" 
+            className="text-white hover:text-amber-400 transition-colors relative"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <span style={{ fontSize: '24px' }}>🛒</span>
+            {cartItemCount > 0 && (
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-8px',
+                  backgroundColor: 'rgb(251, 191, 36)',
+                  color: 'black',
+                  borderRadius: '50%',
+                  width: '20px',
+                  height: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12px',
+                  fontWeight: 'bold'
+                }}
+              >
+                {cartItemCount}
+              </motion.span>
+            )}
+          </a>
           <a href="#login" className="text-white hover:text-amber-400 transition-colors">
             Login
           </a>

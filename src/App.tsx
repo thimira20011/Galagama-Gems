@@ -6,11 +6,14 @@ import { Login } from './components/Login';
 import { Signup } from './components/Signup';
 import { CustomDesign } from './components/CustomDesign';
 import { AboutUs } from './components/AboutUs';
+import { Cart } from './components/Cart';
+import { CartProvider, useCart } from './context/CartContext';
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design' | 'about'>('home');
+function AppContent() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design' | 'about' | 'cart'>('home');
   const [isLoaded, setIsLoaded] = useState(false);
   const { scrollY } = useScroll();
+  const { addToCart } = useCart();
   
   // Parallax effect - background moves slower than foreground
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150]);
@@ -31,6 +34,8 @@ export default function App() {
         setCurrentPage('custom-design');
       } else if (hash === 'about') {
         setCurrentPage('about');
+      } else if (hash === 'cart') {
+        setCurrentPage('cart');
       } else {
         setCurrentPage('home');
       }
@@ -41,23 +46,14 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  if (currentPage === 'login') {
-    return <Login />;
-  }
-
-  if (currentPage === 'signup') {
-    return <Signup />;
-  }
-
-  if (currentPage === 'custom-design') {
-    return <CustomDesign />;
-  }
-
-  if (currentPage === 'about') {
-    return <AboutUs />;
-  }
-
   return (
+    <>
+      {currentPage === 'login' && <Login />}
+      {currentPage === 'signup' && <Signup />}
+      {currentPage === 'custom-design' && <CustomDesign />}
+      {currentPage === 'about' && <AboutUs />}
+      {currentPage === 'cart' && <Cart />}
+      {currentPage === 'home' && (
     <div className="min-h-screen">
       {/* Header Section with Parallax */}
       <div className="relative h-screen overflow-hidden">
@@ -121,16 +117,58 @@ export default function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center mb-8">Our Collections</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="bg-gray-100 p-8 rounded-lg">
+            {[
+              { id: 1, name: 'Golden Ring', category: 'ring', metal: '18K Gold', price: 350 },
+              { id: 2, name: 'Diamond Necklace', category: 'necklace', metal: 'White Gold', price: 1200 },
+              { id: 3, name: 'Ruby Earrings', category: 'earring', metal: 'Platinum', price: 1250 }
+            ].map((item) => (
+              <div key={item.id} className="bg-gray-100 p-8 rounded-lg">
                 <div className="aspect-square bg-gray-300 rounded-lg mb-4" />
-                <h3 className="mb-2">Collection {item}</h3>
-                <p className="text-gray-600">Discover our exquisite handcrafted pieces</p>
+                <h3 className="mb-2">{item.name}</h3>
+                <p className="text-gray-600 mb-2">Discover our exquisite handcrafted pieces</p>
+                <p className="text-amber-600 font-bold text-xl mb-4">${item.price}</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    addToCart({
+                      id: `collection-${item.id}-${Date.now()}`,
+                      category: item.category,
+                      metal: item.metal,
+                      metalPrice: item.price,
+                      size: 'M',
+                      estimatedPrice: item.price
+                    });
+                    alert('Item added to cart!');
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '12px 24px',
+                    background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+                    color: 'black',
+                    fontWeight: '600',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Add to Cart
+                </motion.button>
               </div>
             ))}
           </div>
         </div>
       </div>
     </div>
+      )}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <CartProvider>
+      <AppContent />
+    </CartProvider>
   );
 }
