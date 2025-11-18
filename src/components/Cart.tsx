@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useCart } from '../context/CartContext';
 import { Navigation } from './Navigation';
+import { Footer } from './Footer';
 import { useState, useEffect } from 'react';
 import { useScroll, useTransform } from 'motion/react';
 
@@ -311,6 +312,9 @@ export function Cart() {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

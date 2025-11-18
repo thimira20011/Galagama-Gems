@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
+import { Footer } from './Footer';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 
 export function Login() {
@@ -437,6 +438,9 @@ export function Login() {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
