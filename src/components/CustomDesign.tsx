@@ -2,11 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
+import { Toast } from './Toast';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 import { useCart } from '../context/CartContext';
 
 export function CustomDesign() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedMetal, setSelectedMetal] = useState('');
@@ -2119,8 +2122,11 @@ export function CustomDesign() {
                           estimatedPrice: estimatedPrice
                         });
                         
-                        alert('Custom design added to cart!');
-                        window.location.hash = 'cart';
+                        setToastMessage('Custom design added to cart!');
+                        setShowToast(true);
+                        setTimeout(() => {
+                          window.location.hash = 'cart';
+                        }, 1500);
                       }
                     }}
                     style={{
@@ -2184,6 +2190,13 @@ export function CustomDesign() {
 
       {/* Footer */}
       <Footer />
+      
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type="success"
+      />
     </div>
   );
 }

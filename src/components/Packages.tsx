@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
+import { Toast } from './Toast';
 import { useCart } from '../context/CartContext';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 
 export function Packages() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const { scrollY } = useScroll();
   const { addToCart } = useCart();
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150]);
@@ -32,7 +35,8 @@ export function Packages() {
       size: 'Standard',
       estimatedPrice: pkg.price
     });
-    alert(`${pkg.name} added to cart!`);
+    setToastMessage(`${pkg.name} added to cart!`);
+    setShowToast(true);
   };
 
   return (
@@ -352,6 +356,13 @@ export function Packages() {
         </div>
       </div>
  
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type="success"
+      />
+
       <Footer />
     </div>
   );

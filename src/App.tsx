@@ -13,11 +13,14 @@ import { Packages } from './components/Packages';
 import { Footer } from './components/Footer';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsAndConditions } from './components/TermsAndConditions';
+import { Toast } from './components/Toast';
 import { CartProvider, useCart } from './context/CartContext';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design' | 'marketplace' | 'about' | 'contact' | 'cart' | 'packages' | 'privacy' | 'terms'>('home');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const { scrollY } = useScroll();
   const { addToCart } = useCart();
   
@@ -253,7 +256,8 @@ function AppContent() {
                         size: 'M',
                         estimatedPrice: item.price
                       });
-                      alert('Item added to cart!');
+                      setToastMessage('Item added to cart!');
+                      setShowToast(true);
                     }}
                     style={{
                       width: '100%',
@@ -281,6 +285,13 @@ function AppContent() {
       <Footer />
     </div>
       )}
+      
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type="success"
+      />
     </>
   );
 }

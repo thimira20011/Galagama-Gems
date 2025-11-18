@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
+import { Toast } from './Toast';
 import { useCart } from '../context/CartContext';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 
 export function Marketplace() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [priceRange, setPriceRange] = useState<string>('all');
   const [selectedMetal, setSelectedMetal] = useState<string>('all');
@@ -686,7 +689,8 @@ export function Marketplace() {
                               size: 'M',
                               estimatedPrice: product.price
                             });
-                            alert(`${product.name} added to cart!`);
+                            setToastMessage(`${product.name} added to cart!`);
+                            setShowToast(true);
                           }}
                           style={{
                             width: '100%',
@@ -716,6 +720,13 @@ export function Marketplace() {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Footer />
       </div>
+      
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type="success"
+      />
     </div>
   );
 }

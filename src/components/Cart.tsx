@@ -2,12 +2,16 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useCart } from '../context/CartContext';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
+import { Toast } from './Toast';
 import { useState, useEffect } from 'react';
 import { useScroll, useTransform } from 'motion/react';
 
 export function Cart() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
+  const [showToast, setShowToast] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'bank' | 'receipt'>('card');
   const [cardDetails, setCardDetails] = useState({
     cardNumber: '',
@@ -33,22 +37,34 @@ export function Cart() {
   const handlePaymentSubmit = () => {
     if (paymentMethod === 'card') {
       if (!cardDetails.cardNumber || !cardDetails.cardName || !cardDetails.expiryDate || !cardDetails.cvv) {
-        alert('Please fill in all card details');
+        setToastMessage('Please fill in all card details');
+        setToastType('error');
+        setShowToast(true);
         return;
       }
-      alert('Payment successful! Order confirmed.');
+      setToastMessage('Payment successful! Order confirmed.');
+      setToastType('success');
+      setShowToast(true);
     } else if (paymentMethod === 'bank') {
       if (!bankDetails.accountName || !bankDetails.accountNumber || !bankDetails.bankName) {
-        alert('Please fill in all bank details');
+        setToastMessage('Please fill in all bank details');
+        setToastType('error');
+        setShowToast(true);
         return;
       }
-      alert('Bank transfer details saved! Please complete the transfer and upload receipt.');
+      setToastMessage('Bank transfer details saved! Please complete the transfer and upload receipt.');
+      setToastType('info');
+      setShowToast(true);
     } else if (paymentMethod === 'receipt') {
       if (!receiptFile) {
-        alert('Please upload a payment receipt');
+        setToastMessage('Please upload a payment receipt');
+        setToastType('error');
+        setShowToast(true);
         return;
       }
-      alert('Receipt uploaded successfully! We will verify and process your order.');
+      setToastMessage('Receipt uploaded successfully! We will verify and process your order.');
+      setToastType('success');
+      setShowToast(true);
     }
     setShowPaymentDialog(false);
   };
@@ -786,6 +802,14 @@ export function Cart() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Toast Notification */}
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type={toastType}
+      />
 
       {/* Footer */}
       <Footer />
