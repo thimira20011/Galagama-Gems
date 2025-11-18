@@ -221,7 +221,7 @@ export function ContactUs() {
                           fontSize: '14px',
                           lineHeight: '1.5'
                         }}>
-                          081 1234567<br />
+                          +94 45 2667890<br />
                           Mon - Sat: 9:00 AM - 6:00 PM
                         </p>
                       </div>
@@ -256,7 +256,7 @@ export function ContactUs() {
                           fontSize: '14px',
                           lineHeight: '1.5'
                         }}>
-                          galagamagems@123gmail.com
+                          info@galagamagems.com
                         </p>
                       </div>
                     </motion.div>
