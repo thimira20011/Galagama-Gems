@@ -353,11 +353,6 @@ export function Cart() {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      
-      {/* Footer */}
-      <Footer />
-=======
 
       {/* Payment Dialog */}
       <AnimatePresence>
@@ -791,7 +786,9 @@ export function Cart() {
           </motion.div>
         )}
       </AnimatePresence>
->>>>>>> e19880fe27499acccdd4c89949d0ac48cc26c520
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
