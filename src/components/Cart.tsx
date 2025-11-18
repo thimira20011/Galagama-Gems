@@ -385,16 +385,16 @@ export function Cart() {
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
               style={{
-                backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                background: 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(251, 191, 36, 0.3)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '16px',
                 padding: '40px',
                 maxWidth: '600px',
                 width: '100%',
                 maxHeight: '90vh',
                 overflowY: 'auto',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
                 margin: 'auto'
               }}
             >
