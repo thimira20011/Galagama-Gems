@@ -140,7 +140,7 @@ export function Packages() {
                 Make your special day unforgettable with our carefully curated wedding jewelry collections. Each package is designed to bring elegance and timeless beauty to your celebration.
               </motion.p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20" style={{ alignItems: 'stretch' }}>
           {[
             {
               name: 'Engagement Rings',
@@ -154,8 +154,8 @@ export function Packages() {
                 'Gift box included',
                 'Lifetime warranty',
                 'Free resizing',
-                ' ',
-                ' '
+                'Professional appraisal',
+                'Cleaning service'
               ]
             },
             {
@@ -171,7 +171,7 @@ export function Packages() {
                 '2-year warranty',
                 'Unlimited resizing',
                 'Complimentary cleaning',
-                ' '
+                'Insurance certificate'
               ],
               popular: true
             },
@@ -209,10 +209,12 @@ export function Packages() {
                   : '1px solid rgba(255, 255, 255, 0.3)',
                 borderRadius: '16px',
                 padding: '30px',
+                margin: '0 20px',
                 boxShadow: pkg.popular 
                   ? '0 0 50px rgba(251, 191, 36, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3)' 
                   : '0 10px 30px rgba(0, 0, 0, 0.2)',
-                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 transform: pkg.popular ? 'scale(1.02)' : 'scale(1)',
                 transition: 'all 0.3s ease'
               }}
@@ -273,9 +275,10 @@ export function Packages() {
                   ${pkg.price}
                 </p>
                 
-                <ul className="space-y-2.5 mb-6 flex-grow" style={{ 
+                <ul className="space-y-2.5 flex-grow" style={{ 
                   fontSize: '16px',
-                  lineHeight: '1.8'
+                  lineHeight: '1.8',
+                  marginBottom: '24px'
                 }}>
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start" style={{ 
