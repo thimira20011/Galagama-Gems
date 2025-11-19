@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { NavLink } from './NavLink';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 import { useCart } from '../context/CartContext';

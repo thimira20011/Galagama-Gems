@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
+import { Toast } from './Toast';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
 
 export function Signup() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
+  const [showToast, setShowToast] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,9 +24,14 @@ export function Signup() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      setToastMessage('Passwords do not match!');
+      setToastType('error');
+      setShowToast(true);
       return;
     }
+    setToastMessage('Account created successfully!');
+    setToastType('success');
+    setShowToast(true);
     console.log('Signup submitted:', { name, email, password });
   };
 
@@ -537,6 +546,13 @@ export function Signup() {
           </div>
         </div>
       </div>
+      
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        type={toastType}
+      />
     </div>
   );
 }
