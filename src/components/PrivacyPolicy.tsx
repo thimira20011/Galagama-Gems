@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
@@ -18,7 +19,7 @@ export function PrivacyPolicy() {
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         {/* Background Image with Ken Burns Effect and Parallax */}
         <motion.div
-          style={{ 
+          style={{
             y: backgroundY,
             position: 'absolute',
             inset: 0,
@@ -43,7 +44,7 @@ export function PrivacyPolicy() {
             }}
             style={{ width: '100%', height: '100%' }}
           >
-            <motion.div 
+            <motion.div
               style={{
                 width: '100%',
                 height: '100%',
@@ -52,7 +53,7 @@ export function PrivacyPolicy() {
                 backgroundPosition: 'center'
               }}
               initial={{ filter: "brightness(0.7) contrast(1)" }}
-              animate={{ 
+              animate={{
                 filter: [
                   "brightness(0.7) contrast(1)",
                   "brightness(0.8) contrast(1.05)",
@@ -75,14 +76,14 @@ export function PrivacyPolicy() {
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 10, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Navigation isLoaded={isLoaded} />
-          
+
           {/* Privacy Policy Container */}
-          <div style={{ 
-            flex: 1, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            padding: '48px 32px' 
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '48px 32px'
           }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -102,9 +103,9 @@ export function PrivacyPolicy() {
               }}>
                 {/* Logo */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
-                  <img 
-                    src={logoImage} 
-                    alt="Galagama Gems" 
+                  <img
+                    src={logoImage}
+                    alt="Galagama Gems"
                     style={{
                       height: '64px',
                       width: 'auto',
@@ -139,7 +140,7 @@ export function PrivacyPolicy() {
                   style={{ maxHeight: '60vh', overflowY: 'auto', paddingRight: '20px' }}
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                    
+
                     <section>
                       <h2 style={{
                         fontFamily: "'Playfair Display', serif",
@@ -154,8 +155,8 @@ export function PrivacyPolicy() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        At Galagama Gems, we are committed to protecting your privacy and ensuring the security of your personal information. 
-                        This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website 
+                        At Galagama Gems, we are committed to protecting your privacy and ensuring the security of your personal information.
+                        This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website
                         or make a purchase from us.
                       </p>
                     </section>
@@ -204,7 +205,7 @@ export function PrivacyPolicy() {
                         lineHeight: '1.8',
                         marginTop: '12px'
                       }}>
-                        This information may include your name, email address, phone number, shipping address, billing address, 
+                        This information may include your name, email address, phone number, shipping address, billing address,
                         and payment information.
                       </p>
                     </section>
@@ -256,8 +257,8 @@ export function PrivacyPolicy() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        We implement appropriate technical and organizational measures to protect your personal information against 
-                        unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet 
+                        We implement appropriate technical and organizational measures to protect your personal information against
+                        unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet
                         or electronic storage is 100% secure, and we cannot guarantee absolute security.
                       </p>
                     </section>
@@ -375,31 +376,35 @@ export function PrivacyPolicy() {
                   transition={{ duration: 0.5, delay: 0.6 }}
                   style={{ textAlign: 'center', marginTop: '32px' }}
                 >
-                  <motion.a
-                    href="#signup"
+                  <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    style={{
-                      display: 'inline-block',
-                      padding: '12px 32px',
-                      background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
-                      color: 'black',
-                      fontWeight: '600',
-                      fontSize: '16px',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(251, 191, 36, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                    }}
+                    style={{ display: 'inline-block' }}
                   >
-                    ← Back to Sign Up
-                  </motion.a>
+                    <Link
+                      to="/signup"
+                      style={{
+                        display: 'inline-block',
+                        padding: '12px 32px',
+                        background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+                        color: 'black',
+                        fontWeight: '600',
+                        fontSize: '16px',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(251, 191, 36, 0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                      }}
+                    >
+                      ← Back to Sign Up
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>
