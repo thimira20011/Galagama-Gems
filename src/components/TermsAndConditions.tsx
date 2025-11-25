@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Navigation } from './Navigation';
 import logoImage from '../assets/f9f3557d671d8125a616ddcb69e2a0d761511cdc.png';
@@ -18,7 +19,7 @@ export function TermsAndConditions() {
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         {/* Background Image with Ken Burns Effect and Parallax */}
         <motion.div
-          style={{ 
+          style={{
             y: backgroundY,
             position: 'absolute',
             inset: 0,
@@ -43,7 +44,7 @@ export function TermsAndConditions() {
             }}
             style={{ width: '100%', height: '100%' }}
           >
-            <motion.div 
+            <motion.div
               style={{
                 width: '100%',
                 height: '100%',
@@ -52,7 +53,7 @@ export function TermsAndConditions() {
                 backgroundPosition: 'center'
               }}
               initial={{ filter: "brightness(0.7) contrast(1)" }}
-              animate={{ 
+              animate={{
                 filter: [
                   "brightness(0.7) contrast(1)",
                   "brightness(0.8) contrast(1.05)",
@@ -75,14 +76,14 @@ export function TermsAndConditions() {
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 10, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Navigation isLoaded={isLoaded} />
-          
+
           {/* Terms Container */}
-          <div style={{ 
-            flex: 1, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            padding: '48px 32px' 
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '48px 32px'
           }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -102,9 +103,9 @@ export function TermsAndConditions() {
               }}>
                 {/* Logo */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
-                  <img 
-                    src={logoImage} 
-                    alt="Galagama Gems" 
+                  <img
+                    src={logoImage}
+                    alt="Galagama Gems"
                     style={{
                       height: '64px',
                       width: 'auto',
@@ -139,7 +140,7 @@ export function TermsAndConditions() {
                   style={{ maxHeight: '60vh', overflowY: 'auto', paddingRight: '20px' }}
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                    
+
                     <section>
                       <h2 style={{
                         fontFamily: "'Playfair Display', serif",
@@ -154,7 +155,7 @@ export function TermsAndConditions() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        By accessing and using the Galagama Gems website and services, you accept and agree to be bound by these 
+                        By accessing and using the Galagama Gems website and services, you accept and agree to be bound by these
                         Terms and Conditions. If you do not agree to these terms, please do not use our website or services.
                       </p>
                     </section>
@@ -174,7 +175,7 @@ export function TermsAndConditions() {
                         lineHeight: '1.8',
                         marginBottom: '12px'
                       }}>
-                        Galagama Gems offers high-quality jewelry including rings, necklaces, earrings, and custom-designed pieces. 
+                        Galagama Gems offers high-quality jewelry including rings, necklaces, earrings, and custom-designed pieces.
                         We reserve the right to:
                       </p>
                       <ul style={{
@@ -225,7 +226,7 @@ export function TermsAndConditions() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        Payment must be received in full before orders are processed. We reserve the right to cancel orders 
+                        Payment must be received in full before orders are processed. We reserve the right to cancel orders
                         if payment is not received or if fraud is suspected.
                       </p>
                     </section>
@@ -244,8 +245,8 @@ export function TermsAndConditions() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        For custom jewelry designs, a 50% deposit is required before work begins. The remaining balance must be 
-                        paid before the item is shipped. Custom orders typically take 4-6 weeks to complete. Design specifications 
+                        For custom jewelry designs, a 50% deposit is required before work begins. The remaining balance must be
+                        paid before the item is shipped. Custom orders typically take 4-6 weeks to complete. Design specifications
                         must be approved before production begins, and changes after approval may incur additional charges.
                       </p>
                     </section>
@@ -327,8 +328,8 @@ export function TermsAndConditions() {
                         fontSize: '16px',
                         lineHeight: '1.8'
                       }}>
-                        All jewelry comes with a 1-year warranty covering manufacturing defects. This warranty does not cover 
-                        normal wear and tear, damage from misuse, loss, or theft. Warranty claims must be submitted with proof 
+                        All jewelry comes with a 1-year warranty covering manufacturing defects. This warranty does not cover
+                        normal wear and tear, damage from misuse, loss, or theft. Warranty claims must be submitted with proof
                         of purchase.
                       </p>
                     </section>
@@ -363,8 +364,8 @@ export function TermsAndConditions() {
                         <p>Email: support@galagamagems.com</p>
                         <p>Phone: +94 45 2667890</p>
                         <p>Address: Galagama Gems,
-Pabahinna,
-Sri Lanka., GC 12345</p>
+                          Pabahinna,
+                          Sri Lanka., GC 12345</p>
                       </div>
                     </section>
 
@@ -386,31 +387,35 @@ Sri Lanka., GC 12345</p>
                   transition={{ duration: 0.5, delay: 0.6 }}
                   style={{ textAlign: 'center', marginTop: '32px' }}
                 >
-                  <motion.a
-                    href="#signup"
+                  <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    style={{
-                      display: 'inline-block',
-                      padding: '12px 32px',
-                      background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
-                      color: 'black',
-                      fontWeight: '600',
-                      fontSize: '16px',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(251, 191, 36, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                    }}
+                    style={{ display: 'inline-block' }}
                   >
-                    ← Back to Sign Up
-                  </motion.a>
+                    <Link
+                      to="/signup"
+                      style={{
+                        display: 'inline-block',
+                        padding: '12px 32px',
+                        background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+                        color: 'black',
+                        fontWeight: '600',
+                        fontSize: '16px',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(251, 191, 36, 0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                      }}
+                    >
+                      ← Back to Sign Up
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>
